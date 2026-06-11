@@ -984,13 +984,22 @@
            - Add class "popular" to .tier-card to highlight a tier
       ══════════════════════════════════════════ -->
 <style>
-  /* Clase para el icono incrustado */
+  .tier-per {
+    display: flex;       /* Esto activa el modo flexible */
+    align-items: center; /* Alineación perfecta vertical */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    gap: 5px;            /* Espacio entre el número y el icono */
+  }
+
   .robux-icon {
     height: 1.2em;
+    width: auto;         /* Mantiene la proporción */
     vertical-align: middle;
-    margin-left: 2px;
+    /* Fuerza a la imagen a no tener filtros oscuros o amarillentos */
+    filter: brightness(1.2) contrast(1.1); 
   }
 </style>
+
 
 <div class="tiers">
 
