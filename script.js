@@ -21,7 +21,7 @@ const projects = [
     title: "Waifu Enviroment",
     description: "Japanesse waifus enviroment",
     thumbnail: "japan.webp",
-    images: ["japan"],
+    images: ["japan.webp"],
     video: "",
     technologies: ["Building", "Environment Design", "Atmospheric Lighting"],
     category: "building"
