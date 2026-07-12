@@ -1,882 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ExpJex — Roblox Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg:        #07070f;
-      --surface:   #0c0c1a;
-      --card:      #10101f;
-      --border:    #1c1c32;
-      --border2:   #28284a;
-      --purple:    #7c5cfc;
-      --cyan:      #22d3ee;
-      --red:       #f43f5e;
-      --green:     #22c55e;
-      --yellow:    #fbbf24;
-      --text:      #e8e8f8;
-      --dim:       #9898b8;
-      --muted:     #525270;
-      --font-disp: 'Space Grotesk', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --r-sm: 7px;
-      --r-md: 13px;
-      --r-lg: 20px;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-disp);
-      line-height: 1.6;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2.5rem;
-      height: 56px;
-      background: rgba(7,7,15,0.92);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-brand {
-      font-family: var(--font-mono);
-      font-size: .95rem;
-      font-weight: 700;
-      letter-spacing: -.01em;
-      color: var(--text);
-      user-select: none;
-    }
-    .nav-brand .dot { color: var(--purple); }
-    .nav-tabs {
-      display: flex;
-      gap: 0;
-    }
-    .nav-tab {
-      font-family: var(--font-mono);
-      font-size: .68rem;
-      font-weight: 500;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: .5rem 1.3rem;
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      position: relative;
-      transition: color .18s;
-    }
-    .nav-tab:hover { color: var(--dim); }
-    .nav-tab.active { color: var(--text); }
-    .nav-tab.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      height: 1.5px;
-      background: var(--purple);
-      border-radius: 2px;
-    }
-    .nav-cta {
-      font-family: var(--font-mono);
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: #fff;
-      background: var(--purple);
-      border: none;
-      border-radius: var(--r-sm);
-      padding: .38rem .95rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity .18s;
-    }
-    .nav-cta:hover { opacity: .82; }
-    .page { display: none; min-height: calc(100vh - 56px); padding-top: 56px; }
-    .page.active { display: block; }
-    .wrap {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-    }
-    .eyebrow {
-      font-family: var(--font-mono);
-      font-size: .62rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      display: inline-flex; align-items: center; gap: .4rem;
-      margin-bottom: 1.2rem;
-    }
-    .eyebrow::before { content: '/'; color: var(--purple); }
-    .eyebrow::after  { content: '/'; color: var(--purple); }
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0;
-    }
-    .home-wrap {
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      min-height: calc(100vh - 56px);
-    }
-    .status-pill {
-      display: inline-flex; align-items: center; gap: .5rem;
-      font-family: var(--font-mono);
-      font-size: .66rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 2.2rem;
-    }
-    .status-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--cyan);
-      animation: pulse-dot 2.2s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%,100% { opacity: 1; }
-      50%      { opacity: .35; }
-    }
-    .hero-h {
-      font-size: clamp(4rem, 10vw, 7.5rem);
-      font-weight: 700;
-      letter-spacing: -0.045em;
-      line-height: .95;
-      margin-bottom: 1.6rem;
-    }
-    .hero-h .fade  { color: var(--muted); }
-    .hero-h .pop   { color: var(--purple); }
-    .hero-p {
-      font-family: var(--font-mono);
-      font-size: .82rem;
-      color: var(--dim);
-      line-height: 1.75;
-      max-width: 440px;
-      margin-bottom: 2.2rem;
-    }
-    .btn-row { display: flex; gap: .7rem; flex-wrap: wrap; margin-bottom: 4rem; }
-    .btn {
-      font-family: var(--font-mono);
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      border-radius: var(--r-sm);
-      padding: .6rem 1.3rem;
-      cursor: pointer;
-      text-decoration: none;
-      border: none;
-      transition: opacity .18s, transform .15s;
-      display: inline-flex; align-items: center; gap: .4rem;
-    }
-    .btn:hover { opacity: .82; transform: translateY(-1px); }
-    .btn-fill    { background: var(--purple); color: #fff; }
-    .btn-ghost   { background: transparent; color: var(--text); border: 1px solid var(--border2); }
-    .btn-ghost:hover { border-color: var(--purple); opacity: 1; }
-    .btn-discord { background: #5865f2; color: #fff; }
-    .btn-roblox  { background: #e52207; color: #fff; }
-    .stats-strip {
-      display: flex;
-      border-top: 1px solid var(--border);
-      padding-top: 2.5rem;
-      padding-bottom: 4rem;
-      gap: 0;
-    }
-    .stat {
-      flex: 1;
-      padding-right: 2rem;
-      border-right: 1px solid var(--border);
-      margin-right: 2rem;
-    }
-    .stat:last-child { border-right: none; margin-right: 0; }
-    .stat .n {
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
-      font-weight: 700;
-      color: var(--cyan);
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-    .stat .l {
-      font-family: var(--font-mono);
-      font-size: .6rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: .25rem;
-    }
-    .home-links {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 0;
-    }
-    .links-heading {
-      font-family: var(--font-mono);
-      font-size: .6rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: .9rem;
-    }
-    .chip-row { display: flex; flex-wrap: wrap; gap: .7rem; }
-    .chip {
-      display: inline-flex; align-items: center; gap: .45rem;
-      font-family: var(--font-mono);
-      font-size: .72rem;
-      color: var(--dim);
-      text-decoration: none;
-      padding: .45rem .85rem;
-      border: 1px solid var(--border);
-      border-radius: var(--r-sm);
-      transition: border-color .18s, color .18s;
-    }
-    .chip:hover { border-color: var(--cyan); color: var(--text); }
-    .home-stack {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 0 5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-    }
-    .stack-h {
-      font-family: var(--font-mono);
-      font-size: .6rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: .9rem;
-    }
-    .tag-row { display: flex; flex-wrap: wrap; gap: .45rem; }
-    .tag {
-      font-family: var(--font-mono);
-      font-size: .65rem;
-      font-weight: 500;
-      letter-spacing: .06em;
-      padding: .25rem .72rem;
-      border-radius: 5px;
-    }
-    .tag-p {
-      background: rgba(124,92,252,.1);
-      border: 1px solid rgba(124,92,252,.22);
-      color: var(--purple);
-    }
-    .tag-c {
-      background: rgba(34,211,238,.07);
-      border: 1px solid rgba(34,211,238,.2);
-      color: var(--cyan);
-    }
-    .works-head {
-      padding: 3.5rem 0 2.5rem;
-    }
-    .page-title {
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: .5rem;
-    }
-    .page-sub {
-      font-family: var(--font-mono);
-      font-size: .78rem;
-      color: var(--dim);
-    }
-    .proj-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      margin-bottom: 3.5rem;
-    }
-    .proj-card {
-      background: var(--card);
-      transition: background .18s;
-    }
-    .proj-card:hover { background: #131326; }
-    .proj-thumb {
-      width: 100%;
-      height: 170px;
-      object-fit: cover;
-      display: block;
-      border-bottom: 1px solid var(--border);
-    }
-    .proj-body { padding: 1.1rem; }
-    .proj-tags {
-      display: flex; flex-wrap: wrap; gap: .35rem;
-      margin-bottom: .65rem;
-    }
-    .ptag {
-      font-family: var(--font-mono);
-      font-size: .56rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .16rem .52rem;
-      border-radius: 4px;
-      border: 1px solid var(--border2);
-      color: var(--muted);
-    }
-    .ptag-p { border-color: rgba(124,92,252,.3); color: var(--purple); }
-    .ptag-c { border-color: rgba(34,211,238,.28); color: var(--cyan); }
-    .proj-name  { font-size: .92rem; font-weight: 700; margin-bottom: .2rem; }
-    .proj-desc  {
-      font-family: var(--font-mono);
-      font-size: .68rem;
-      color: var(--dim);
-      line-height: 1.55;
-    }
-    .shipped-label {
-      font-family: var(--font-mono);
-      font-size: .62rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-align: center;
-      margin-bottom: 1.1rem;
-      position: relative;
-    }
-    .shipped-label::before,
-    .shipped-label::after {
-      content: '';
-      position: absolute; top: 50%;
-      width: 38%; height: 1px;
-      background: var(--border);
-    }
-    .shipped-label::before { left: 0; }
-    .shipped-label::after  { right: 0; }
-    .shipped-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 4rem;
-    }
-    .shipped-row {
-      display: flex; align-items: center; gap: 1rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: .95rem 1.1rem;
-      text-decoration: none;
-      transition: border-color .18s;
-    }
-    .shipped-row:hover { border-color: var(--purple); }
-    .shipped-icon {
-      width: 48px; height: 48px;
-      border-radius: 10px;
-      background: var(--border);
-      object-fit: cover;
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-      overflow: hidden;
-    }
-    .shipped-icon img { width: 100%; height: 100%; object-fit: cover; }
-    .shipped-name { font-weight: 700; font-size: .88rem; color: var(--text); }
-    .shipped-meta {
-      font-family: var(--font-mono);
-      font-size: .62rem;
-      color: var(--muted);
-    }
-    .shipped-arrow { margin-left: auto; color: var(--muted); font-size: .9rem; }
-    .pricing-head {
-      padding: 3.5rem 0 2.5rem;
-    }
-    .tiers {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .tier-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--r-lg);
-      padding: 1.8rem;
-      position: relative;
-    }
-    .tier-card.popular { border-color: var(--purple); }
-    .tier-badge {
-      position: absolute; top: -1px; right: 1.4rem;
-      font-family: var(--font-mono);
-      font-size: .58rem; font-weight: 700;
-      letter-spacing: .12em; text-transform: uppercase;
-      background: var(--purple); color: #fff;
-      padding: .22rem .65rem;
-      border-radius: 0 0 6px 6px;
-    }
-    .tier-range {
-      font-family: var(--font-mono);
-      font-size: .62rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: .9rem;
-    }
-    .tier-price {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      color: var(--text);
-      margin-bottom: .25rem;
-    }
-    .tier-price sup { font-size: .45em; font-weight: 400; vertical-align: super; margin-top: .2em; color: var(--dim); }
-    .tier-per {
-      font-family: var(--font-mono);
-      font-size: .68rem;
-      color: var(--muted);
-      margin-bottom: 1.4rem;
-      padding-bottom: 1.4rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .tier-items { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
-    .tier-items li {
-      display: flex; align-items: flex-start; gap: .55rem;
-      font-family: var(--font-mono);
-      font-size: .7rem;
-      color: var(--dim);
-      line-height: 1.5;
-    }
-    .tier-items li::before { content: '—'; color: var(--purple); flex-shrink: 0; }
-    .callout {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 1.3rem 1.5rem;
-      margin-bottom: 4rem;
-    }
-    .callout p {
-      font-family: var(--font-mono);
-      font-size: .76rem;
-      color: var(--dim);
-      line-height: 1.65;
-    }
-    .callout strong { color: var(--text); }
-    .about-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      padding: 3.5rem 0 3rem;
-      align-items: start;
-    }
-    .about-h {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1.02;
-      margin-bottom: 1.4rem;
-    }
-    .about-h .pop { color: var(--purple); }
-    .about-p {
-      font-family: var(--font-mono);
-      font-size: .78rem;
-      color: var(--dim);
-      line-height: 1.8;
-      margin-bottom: .9rem;
-    }
-    .about-p strong { color: var(--cyan); font-weight: 500; }
-    .jam-pill {
-      display: inline-flex; align-items: center; gap: .45rem;
-      font-family: var(--font-mono);
-      font-size: .68rem; letter-spacing: .06em;
-      background: rgba(124,92,252,.08);
-      border: 1px solid rgba(124,92,252,.2);
-      border-radius: var(--r-sm);
-      padding: .38rem .85rem;
-      color: var(--purple);
-      margin: 1.2rem 0 1.5rem;
-      display: inline-flex;
-    }
-    .stack-box { margin-top: 1.5rem; }
-    .stack-box .stack-h {
-      font-family: var(--font-mono);
-      font-size: .6rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: .75rem;
-    }
-    .why-list {
-      display: flex; flex-direction: column; gap: .75rem;
-      counter-reset: why;
-    }
-    .why-row {
-      display: flex; align-items: flex-start; gap: 1rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 1rem 1.2rem;
-      transition: border-color .18s;
-      counter-increment: why;
-    }
-    .why-row:hover { border-color: var(--purple); }
-    .why-n {
-      font-family: var(--font-mono);
-      font-size: .68rem;
-      font-weight: 700;
-      color: var(--purple);
-      flex-shrink: 0;
-      margin-top: .1rem;
-      content: counter(why, decimal-leading-zero);
-    }
-    .why-n::before { content: counter(why, decimal-leading-zero); }
-    .why-body h4 { font-weight: 700; font-size: .9rem; margin-bottom: .15rem; }
-    .why-body p {
-      font-family: var(--font-mono);
-      font-size: .7rem;
-      color: var(--dim);
-      line-height: 1.55;
-    }
-    .testimonials {
-      border-top: 1px solid var(--border);
-      padding: 3rem 0;
-    }
-    .testi-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .testi {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 1.2rem;
-    }
-    .testi-top {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: .75rem;
-    }
-    .testi-name { font-weight: 700; font-size: .84rem; }
-    .testi-v {
-      font-family: var(--font-mono);
-      font-size: .6rem;
-      color: var(--green);
-    }
-    .testi-stars { font-size: .78rem; color: var(--yellow); letter-spacing: .05em; }
-    .testi-q {
-      font-family: var(--font-mono);
-      font-size: .7rem;
-      color: var(--dim);
-      font-style: italic;
-      line-height: 1.6;
-    }
-    .cta-bar {
-      background: linear-gradient(135deg, rgba(124,92,252,.09), rgba(34,211,238,.04));
-      border: 1px solid rgba(124,92,252,.16);
-      border-radius: var(--r-lg);
-      padding: 2.5rem;
-      margin: 0 0 4rem;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1.5rem;
-    }
-    .cta-bar h2 {
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
-      font-weight: 700;
-      letter-spacing: -.03em;
-      margin-bottom: .3rem;
-    }
-    .cta-bar .cta-p {
-      font-family: var(--font-mono);
-      font-size: .72rem;
-      color: var(--dim);
-      line-height: 1.6;
-    }
-    .cta-bar .cta-p code {
-      color: var(--cyan);
-      background: rgba(34,211,238,.08);
-      padding: .08rem .35rem;
-      border-radius: 4px;
-    }
-    .cta-btns { display: flex; gap: .7rem; flex-wrap: wrap; }
-    .site-footer {
-      border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: .75rem;
-      padding: 1.3rem 2.5rem;
-    }
-    .site-footer p, .site-footer span {
-      font-family: var(--font-mono);
-      font-size: .62rem;
-      letter-spacing: .06em;
-      color: var(--muted);
-    }
-    .site-footer code { color: var(--cyan); }
-    @media (max-width: 920px) {
-      .proj-grid     { grid-template-columns: 1fr 1fr; }
-      .tiers         { grid-template-columns: 1fr; }
-      .about-layout  { grid-template-columns: 1fr; gap: 3rem; }
-      .testi-grid    { grid-template-columns: 1fr 1fr; }
-      .home-stack    { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 640px) {
-      nav { padding: 0 1rem; }
-      .wrap { padding: 0 1rem; }
-      .nav-cta { display: none; }
-      .nav-tab { padding: .5rem .7rem; font-size: .6rem; letter-spacing: .08em; }
-      .proj-grid    { grid-template-columns: 1fr; }
-      .shipped-list { grid-template-columns: 1fr; }
-      .testi-grid   { grid-template-columns: 1fr; }
-      .stats-strip  { flex-direction: column; gap: 1.4rem; }
-      .stat { border-right: none; padding-right: 0; margin-right: 0;
-              border-bottom: 1px solid var(--border); padding-bottom: 1.4rem; }
-      .stat:last-child { border-bottom: none; padding-bottom: 0; }
-      .cta-bar { text-align: center; justify-content: center; }
-      .site-footer { justify-content: center; text-align: center; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .status-dot { animation: none; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExpJex — Professional Roblox Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <nav>
-    <span class="nav-brand">Exp<span class="dot">.</span>Jex</span>
+  <div class="bg-animation" id="bg-animation"></div>
 
-    <div class="nav-tabs">
-      <button class="nav-tab active" data-tab="home" onclick="go('home')">Home</button>
-      <button class="nav-tab"        data-tab="works" onclick="go('works')">Works</button>
-      <button class="nav-tab"        data-tab="pricing" onclick="go('pricing')">Pricing</button>
-      <button class="nav-tab"        data-tab="about" onclick="go('about')">About</button>
+  <nav class="navbar">
+    <div class="nav-brand">Exp<span class="dot">.</span>Jex</div>
+    <ul class="nav-links">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#pricing" class="nav-link">Pricing</a></li>
+      <li><a href="#payment" class="nav-link">Process</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </div>
-
-    <button class="nav-cta" onclick="go('about')">Hire Me</button>
   </nav>
 
-  <div id="tab-home" class="page active">
-    <div class="wrap">
-      <div class="home-wrap">
-
-        <section style="padding: 4.5rem 0 0;">
-          <div class="status-pill">
-            <span class="status-dot"></span>
-            Roblox Developer — Open for Work
-          </div>
-
-          <h1 class="hero-h">
-            Games<br>
-            <span class="fade">that</span> <span class="pop">ship.</span>
-          </h1>
-
-          <p class="hero-p">
-            Full-stack Roblox development — core systems to pixel-perfect UI.<br>
-            Fast delivery. Clean Luau. Built to run at scale.
-          </p>
-
-          <div class="btn-row">
-            <button class="btn btn-fill"  onclick="go('works')">View Work</button>
-            <button class="btn btn-ghost" onclick="go('pricing')">See Pricing</button>
-          </div>
-
-          <div class="stats-strip">
-            <div class="stat">
-              <div class="n">5+</div>
-              <div class="l">Projects completed</div>
-            </div>
-            <div class="stat">
-              <div class="n">2026</div>
-              <div class="l">RoJam participant</div>
-            </div>
-            <div class="stat">
-              <div class="n">LATAM</div>
-              <div class="l">Timezone</div>
-            </div>
-            <div class="stat">
-              <div class="n">3</div>
-              <div class="l">Core disciplines</div>
-            </div>
-          </div>
-        </section>
-
-        <div class="home-links">
-          <div class="links-heading">Platforms</div>
-          <div class="chip-row">
-            <a class="chip" href="https://discord.gg/j3tvJnSr" target="_blank" rel="noopener">
-              💬 Discord — 3st3b6n_relax_08486
-            </a>
-            <a class="chip" href="https://www.roblox.com/es/users/4884660558/profile" target="_blank" rel="noopener">
-              🎮 Roblox — ExpJex
-            </a>
-          </div>
+  <header id="home" class="hero-section section">
+    <div class="wrap hero-container">
+      <div class="hero-content">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          Available for Commissions
         </div>
+        <h1 class="hero-title">ExpJex</h1>
+        <h2 class="hero-subtitle">Professional Roblox Developer</h2>
+        <p class="hero-description">Engineering high-performance Luau systems, immersive environments, and intuitive interfaces. Scaling experiences from concept to production.</p>
+        <div class="btn-group">
+          <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="image-glow-wrapper">
+          <img src="ExpJex.webp" alt="ExpJex Character" class="hero-img">
+        </div>
+      </div>
+    </div>
+  </header>
 
-        <div class="home-stack">
-          <div>
-            <div class="stack-h">Languages</div>
-            <div class="tag-row">
-              <span class="tag tag-p">Lua</span>
-              <span class="tag tag-p">Luau</span>
-              <span class="tag tag-p">Server-Client</span>
+  <main>
+    <section id="about" class="about-section section reveal">
+      <div class="wrap">
+        <div class="about-layout">
+          <div class="about-visual">
+            <div class="image-glow-wrapper img-sub">
+              <img src="ExpJex.webp" alt="ExpJex Development" class="about-img">
             </div>
           </div>
-          <div>
-            <div class="stack-h">Disciplines</div>
-            <div class="tag-row">
-              <span class="tag tag-c">UI / UX</span>
-              <span class="tag tag-c">Building</span>
-              <span class="tag tag-c">3D Modeling</span>
+          <div class="about-content">
+            <span class="eyebrow">Biography</span>
+            <h2 class="section-title">About Me</h2>
+            <p class="about-p">Hello, I am <strong>ExpJex</strong>. Over the past 6 years, I have dedicated myself to creating immersive experiences within Roblox Studio. Throughout this journey, I have honed my expertise in advanced scripting, user interface design, environmental building, and various other facets of full-stack game execution.</p>
+            <p class="about-p">I am deeply passionate about game development, web design, programming, and robotics. These multi-disciplinary interests have allowed me to collaborate with diverse teams and contribute to vibrant communities. Driven by continuous learning, every commission, challenge, and concept serves as fuel to refine my craft and grow as a developer every single day.</p>
+            <div class="about-stats">
+              <div class="mini-stat">
+                <span class="stat-num">6+</span>
+                <span class="stat-lbl">Years Experience</span>
+              </div>
+              <div class="mini-stat">
+                <span class="stat-num">100%</span>
+                <span class="stat-lbl">Luau Optimized</span>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
+    <section id="skills" class="skills-section section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <span class="eyebrow">Expertise</span>
+          <h2 class="section-title">Technical Skills</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon-header">
+              <span class="skill-main-icon">💻</span>
+              <h3>Scripting</h3>
+            </div>
+            <div class="skill-subcategory">
+              <h4>Full Stack Scripting</h4>
+              <ul class="skill-list">
+                <li>Building Systems</li>
+                <li>RNG Shop Systems</li>
+                <li>Rebirth Systems</li>
+              </ul>
+            </div>
+            <div class="skill-subcategory">
+              <h4>Backend Scripting</h4>
+              <ul class="skill-list">
+                <li>Data Management</li>
+                <li>Global Events</li>
+                <li>Data Saving Systems</li>
+              </ul>
+            </div>
+            <div class="skill-subcategory">
+              <h4>Frontend Scripting</h4>
+              <ul class="skill-list">
+                <li>UI Animations</li>
+                <li>Dynamic Visual Effects</li>
+                <li>Notifications &amp; Loading Systems</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon-header">
+              <span class="skill-main-icon">🎨</span>
+              <h3>UI Design</h3>
+            </div>
+            <div class="skill-subcategory">
+              <h4>Graphic UI</h4>
+              <ul class="skill-list">
+                <li>Custom Vector Icons</li>
+                <li>Game Thumbnails</li>
+                <li>User Interfaces</li>
+              </ul>
+            </div>
+            <div class="skill-subcategory">
+              <h4>Interactive UI</h4>
+              <ul class="skill-list">
+                <li>Smooth Tween Animations</li>
+                <li>Button Sounds &amp; Haptics</li>
+                <li>Dynamic Transitions</li>
+              </ul>
+            </div>
+            <div class="skill-subcategory">
+              <h4>Technical UI</h4>
+              <ul class="skill-list">
+                <li>Responsive Layouts</li>
+                <li>Player Data Integration</li>
+                <li>Dynamic Notifications</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon-header">
+              <span class="skill-main-icon">🔨</span>
+              <h3>Building</h3>
+            </div>
+            <div class="skill-subcategory">
+              <h4>Environment Architecture</h4>
+              <ul class="skill-list">
+                <li>Consistent Themes</li>
+                <li>Immersive Structures</li>
+                <li>Atmospheric Lighting Setup</li>
+              </ul>
+            </div>
+            <div class="skill-subcategory">
+              <h4>Technical Building</h4>
+              <ul class="skill-list">
+                <li>Level of Detail Optimization</li>
+                <li>Asset Optimization</li>
+                <li>Performance-Safe Geometry</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="portfolio-section section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <span class="eyebrow">Showcase</span>
+          <h2 class="section-title">Projects Gallery</h2>
+        </div>
+        <div class="filter-container">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="scripting">Scripting</button>
+          <button class="filter-btn" data-filter="ui">UI Design</button>
+          <button class="filter-btn" data-filter="building">Building</button>
+        </div>
+        <div class="portfolio-grid" id="portfolio-grid"></div>
+      </div>
+    </section>
+
+    <section id="services" class="services-section section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <span class="eyebrow">Offerings</span>
+          <h2 class="section-title">Professional Services</h2>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-num">01</div>
+            <h3>Roblox Scripting</h3>
+            <p>Clean, object-oriented Luau architecture optimized for network efficiency and seamless client-server security.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-num">02</div>
+            <h3>UI Design</h3>
+            <p>Modern layouts mapped across all aspect ratios to guarantee crisp user interfaces on Mobile, Console, and PC.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-num">03</div>
+            <h3>Building</h3>
+            <p>Immersive structural environmental design leveraging custom lighting profiles and memory-budget optimizations.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-num">04</div>
+            <h3>Bug Fixing</h3>
+            <p>Rigorous diagnostics and refactoring of broken legacy codebases, resolving memory leaks and syntax defects.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-num">05</div>
+            <h3>System Development</h3>
+            <p>End-to-end design of custom modular mechanics like inventory architectures, item trading, and matchmakers.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-num">06</div>
+            <h3>Optimization</h3>
+            <p>Improving frames-per-second outputs via asset streaming tweaks, algorithmic optimization, and instances throttling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="pricing-section section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <span class="eyebrow">Investment</span>
+          <h2 class="section-title">Commission Rates</h2>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Standard Asset</h3>
+            <div class="price"><span>$</span>15<span>+</span></div>
+            <div class="robux-price">or 4,000+ R$</div>
+            <ul class="pricing-features">
+              <li>Single UI Menu</li>
+              <li>Basic Scripting Task</li>
+              <li>Small Environment Prop</li>
+              <li>1 Revision</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary">Request Quote</a>
+          </div>
+          <div class="pricing-card popular">
+            <div class="popular-badge">Most Requested</div>
+            <h3>Advanced System</h3>
+            <div class="price"><span>$</span>50<span>+</span></div>
+            <div class="robux-price">or 14,000+ R$</div>
+            <ul class="pricing-features">
+              <li>Full UI Screen Set</li>
+              <li>Core Game Mechanic</li>
+              <li>Medium Map / Lobby</li>
+              <li>Optimized Luau Code</li>
+              <li>2 Revisions</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">Request Quote</a>
+          </div>
+          <div class="pricing-card">
+            <h3>Full Architecture</h3>
+            <div class="price"><span>$</span>150<span>+</span></div>
+            <div class="robux-price">or 42,000+ R$</div>
+            <ul class="pricing-features">
+              <li>End-to-End Development</li>
+              <li>Complex Datastores</li>
+              <li>Large Scale Environments</li>
+              <li>Security &amp; Anti-Exploit</li>
+              <li>Priority Support</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary">Request Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="payment" class="timeline-section section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <span class="eyebrow">Workflow</span>
+          <h2 class="section-title">Payment &amp; Process</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-step">Step 01</span>
+              <h3>Initial Consultation</h3>
+              <p>Client initiates contact through preferred social platforms to submit project guidelines and scope requirements.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-step">Step 02</span>
+              <h3>Requirements Discovery</h3>
+              <p>Comprehensive evaluation of mechanics, deadlines, visual style assets, and project architecture criteria.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-step">Step 03</span>
+              <h3>Development Phase</h3>
+              <p>Active project engineering using version-controlled structures following scalable clean-code methodologies.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-step">Step 04</span>
+              <h3>Milestone Demonstrations</h3>
+              <p>Routine diagnostic performance feedback logs and clear interactive production video builds delivered to client.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-step">Step 05</span>
+              <h3>Verification &amp; Clearing</h3>
+              <p>Final project build validations completed. Remittance processed securely through verified PayPal channels or Robux.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-step">Step 06</span>
+              <h3>Asset Handover</h3>
+              <p>Secure distribution of structural files package deployed natively as a verified Roblox Model (.rbxm) or Place (.rbxl) format.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section section reveal">
+      <div class="wrap">
+        <div class="section-header">
+          <span class="eyebrow">Communication</span>
+          <h2 class="section-title">Let's Connect</h2>
+        </div>
+        <div class="contact-grid">
+          <a href="https://discord.gg/j3tvJnSr" target="_blank" rel="noopener" class="contact-card">
+            <div class="contact-icon">💬</div>
+            <h3>Discord</h3>
+            <p>3st3b6n_relax_08486</p>
+            <span class="contact-action">Join Server →</span>
+          </a>
+          <a href="https://www.roblox.com/es/users/4884660558/profile" target="_blank" rel="noopener" class="contact-card">
+            <div class="contact-icon">🎮</div>
+            <h3>Roblox Profile</h3>
+            <p>@ExpJex</p>
+            <span class="contact-action">Follow Developer →</span>
+          </a>
+          <a href="mailto:contact@expjex.dev" class="contact-card">
+            <div class="contact-icon">✉️</div>
+            <h3>Business Email</h3>
+            <p>contact@expjex.dev</p>
+            <span class="contact-action">Send Message →</span>
+          </a>
+          <a href="https://paypal.me/expjex" target="_blank" rel="noopener" class="contact-card">
+            <div class="contact-icon">💳</div>
+            <h3>PayPal</h3>
+            <p>Verified Merchant Account</p>
+            <span class="contact-action">View Link →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="project-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-container">
+      <button class="modal-close" id="modal-close-btn">&times;</button>
+      <div class="modal-body">
+        <div class="modal-media-side">
+          <div class="main-media-display" id="modal-main-media"></div>
+          <div class="media-thumbnails-track" id="modal-thumbnails"></div>
+        </div>
+        <div class="modal-info-side">
+          <span class="modal-category" id="modal-project-category">Category</span>
+          <h2 class="modal-title" id="modal-project-title">Project Title</h2>
+          <p class="modal-description" id="modal-project-desc">Detailed project evaluation details go here.</p>
+          <div class="modal-meta-group">
+            <h4>Technologies Utilized</h4>
+            <div class="tech-tags-wrapper" id="modal-project-tech"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="tab-works" class="page">
-    <div class="wrap">
-
-      <div class="works-head">
-        <div class="eyebrow">Portfolio</div>
-        <h2 class="page-title">Past Works</h2>
-        <p class="page-sub">Systems and experiences built and delivered for real games.</p>
-      </div>
-
-      <div class="proj-grid">
-
-        <div class="proj-card">
-          <img class="proj-thumb" src="IMG_4192.png" alt="Protocol 1963" />
-          <div class="proj-body">
-            <div class="proj-tags">
-              <span class="ptag ptag-p">Full Stack</span>
-              <span class="ptag">Horror</span>
-              <span class="ptag">Scripting</span>
-            </div>
-            <div class="proj-name">Protocol 1963</div>
-            <div class="proj-desc">Soviet horror surveillance experience. Full gameplay systems, security camera network, and atmospheric UI.</div>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <img class="proj-thumb" src="IMG_4193.png" alt="Protocol 1963 — Room Design" />
-          <div class="proj-body">
-            <div class="proj-tags">
-              <span class="ptag ptag-c">Building</span>
-              <span class="ptag">Ambience</span>
-            </div>
-            <div class="proj-name">Protocol 1963 — Room Design</div>
-            <div class="proj-desc">Environment construction that supports horror gameplay and builds immersive atmosphere from the ground up.</div>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <img class="proj-thumb" src="IMG_4195.png" alt="Protocol 1963 — Corridor" />
-          <div class="proj-body">
-            <div class="proj-tags">
-              <span class="ptag ptag-c">Building</span>
-              <span class="ptag">Lighting</span>
-            </div>
-            <div class="proj-name">Protocol 1963 — Corridor</div>
-            <div class="proj-desc">Detailed corridor sequence — controlled lighting, material layering, and tension-building geometry.</div>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <img class="proj-thumb" src="thumbail.png" alt="Thumbnail" />
-          <div class="proj-body">
-            <div class="proj-tags">
-              <span class="ptag ptag-c">UI / UX</span>
-            </div>
-            <div class="proj-name">Project UI Design</div>
-            <div class="proj-desc">Interface layout and responsive design mechanics optimized for cross-platform integration.</div>
-          </div>
-        </div>
-      </div>
+  <footer class="site-footer">
+    <div class="wrap footer-flex">
+      <p>&copy; 2026 <span>ExpJex</span>. All Rights Reserved.</p>
+      <p>Engineered with <code>Luau</code> &amp; Pure Frontend Stack</p>
     </div>
-  </div>
+  </footer>
 
-  <div id="tab-pricing" class="page">
-    <div class="wrap">
-      
-      <div class="pricing-head">
-        <div class="eyebrow">Rates</div>
-        <h2 class="page-title">Pricing & Packages</h2>
-        <p class="page-sub">Clear, upfront pricing for high-quality development and design solutions.</p>
-      </div>
-
-      <div class="tiers">
-        
-        <div class="tier-card">
-          <div class="tier-range">Basic</div>
-          <div class="tier-price"><sup>$</sup>20</div>
-          <div class="tier-per">per asset / module</div>
-          <ul class="tier-items">
-            <li>Basic UI Frames & Menus</li>
-            <li>Simple Scripts (Doors, Data)</li>
-            <li>Small low-poly models</li>
-            <li>1 Revision included</li>
-          </ul>
-        </div>
-
-        <div class="tier-card popular">
-          <div class="tier-badge">Popular</div>
-          <div class="tier-range">Standard</div>
-          <div class="tier-price"><sup>$</sup>60</div>
-          <div class="tier-per">per full system</div>
-          <ul class="tier-items">
-            <li>Complete UI/UX Screens</li>
-            <li>Advanced Gameplay Loops</li>
-            <li>Database & Save Systems</li>
-            <li>2 Revisions included</li>
-          </ul>
-        </div>
-
-        <div class="tier-card">
-          <div class="tier-range">Premium</div>
-          <div class="tier-price"><sup>$</sup>150</div>
-          <div class="tier-per">per game foundation</div>
-          <ul class="tier-items">
-            <li>Full Stack Framework</li>
-            <li>Map Building & Lighting</li>
-            <li>Custom Mechanics Integration</li>
-            <li>Priority Support & Fixes</li>
-          </ul>
-        </div>
-        
-      </div>
-
-      <div class="callout">
-        <p><strong>Note:</strong> Pricing above represents baseline averages. Exact project costs may vary depending on specific scope, timeline, and requested features. Feel free to contact me for a customized quote for your game.</p>
-      </div>
-      
-    </div>
-  </div>
-
-  <div id="tab-about" class="page">
-    <div class="wrap">
-      
-      <div class="about-layout">
-        <div>
-          <h2 class="about-h">Building <span class="pop">Roblox</span> experiences since 2020.</h2>
-          <p class="about-p">I specialize in connecting logic with design, ensuring everything from the backend architecture to the frontend interface feels seamless for the player.</p>
-          <div class="jam-pill">
-            🚀 2026 Developer Jam Participant
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-
-  <script>
-    function go(tabId) {
-      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-      document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
-      
-      document.getElementById('tab-' + tabId).classList.add('active');
-      document.querySelector('.nav-tab[data-tab="' + tabId + '"]').classList.add('active');
-      
-      window.scrollTo(0, 0);
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
