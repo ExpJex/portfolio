@@ -2,29 +2,56 @@ const projects = [
   {
     title: "Protocol 1963",
     description: "Soviet horror surveillance experience. Full gameplay core structural architecture, functional security camera network matrix, data-saving terminals, and highly atmospheric operational UI elements matching historical reference assets.",
-    thumbnail: "IMG_4192.png",
-    images: ["IMG_4192.png", "IMG_4193.png", "IMG_4195.png"],
+    thumbnail: "bedroom.png",
+    images: ["bedroom.png", "office.png"],
     video: "",
-    technologies: ["Luau", "Full Stack Scripting", "Data Management", "Custom Sound Matrix"],
-    category: "scripting"
+    technologies: ["Luau", "Full Stack Scripting", "Data Management", "Environment Design", "Atmospheric Lighting", "LOD Optimization"],
+    category: "scripting, UI, building"
   },
   {
-    title: "Soviet Subterranean Corridor",
-    description: "Detailed containment corridor infrastructure build emphasizing realistic material layering patterns, specialized environmental geometry configuration, and highly immersive volumetric field configurations.",
-    thumbnail: "IMG_4195.png",
-    images: ["IMG_4195.png", "IMG_4193.png"],
+    title: "Building System",
+    description: "Building system like clash of clans game",
+    thumbnail: "building.webp",
+    images: ["building.webp", "shop.png"],
     video: "",
-    technologies: ["Environment Design", "Atmospheric Lighting", "LOD Optimization"],
+    technologies: ["Luau", "Full Stack Scripting", "Data Sync Framework", "UI Design"],
+    category: "scripting, UI, building"
+  },
+  {
+    title: "Waifu Enviroment",
+    description: "Japanesse waifus enviroment",
+    thumbnail: "japan.webp",
+    images: ["japan"],
+    video: "",
+    technologies: ["Building", "Environment Design", "Atmospheric Lighting"],
     category: "building"
   },
   {
-    title: "Operational Base Command UI",
-    description: "Pixel-perfect modern operational terminal displaying real-time data parameters from server engines. Responsive build mapped cleanly across standard configurations to minimize interface obstruction scaling bugs.",
-    thumbnail: "IMG_4193.png",
-    images: ["IMG_4193.png", "IMG_4192.png"],
+    title: "Soccer Ball System",
+    description: "A comission of a full soccer ball system, with animations, and simple desing",
+    thumbnail: "marker.webp",
+    images: ["marker.webp"],
     video: "",
-    technologies: ["Tween Engine", "Responsive Design", "Data Sync Framework"],
-    category: "ui"
+    technologies: ["Luau", "Full Stack Scripting", "Ui Desing", "Animations", "Scripting FrontEnd"],
+    category: "scripting, animations"
+  },
+  {
+    title: "Palenque Building",
+    description: "A simple comission of a Party Palenque",
+    thumbnail: "palenque.png",
+    images: ["palenque.png"],
+    video: "",
+    technologies: ["Building", "Environment Design", "Atmospheric Lighting"],
+    category: "building"
+  },
+  {
+    title: "Break Ice Simulator",
+    description: "Simulator clicker experience, break ice and earn money for better tools and backpacks",
+    thumbnail: "thumbail.png",
+    images: ["thumbail.png"],
+    video: "",
+    technologies: ["CFX", "UI Desing"],
+    category: "building"
   }
 ];
 
