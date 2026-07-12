@@ -1,413 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ExpJex — Professional Roblox Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpJex — Roblox Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="bg-animation" id="bg-animation"></div>
+    <nav class="navbar">
+        <div class="logo">ExpJex</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+    </nav>
 
-  <nav class="navbar">
-    <div class="nav-brand">Exp<span class="dot">.</span>Jex</div>
-    <ul class="nav-links">
-      <li><a href="#home" class="nav-link active">Home</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-      <li><a href="#services" class="nav-link">Services</a></li>
-      <li><a href="#pricing" class="nav-link">Pricing</a></li>
-      <li><a href="#payment" class="nav-link">Process</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
-    <div class="menu-toggle" id="mobile-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-  </nav>
-
-  <header id="home" class="hero-section section">
-    <div class="wrap hero-container">
-      <div class="hero-content">
-        <div class="status-pill">
-          <span class="status-dot"></span>
-          Available for Commissions
-        </div>
-        <h1 class="hero-title">ExpJex</h1>
-        <h2 class="hero-subtitle">Professional Roblox Developer</h2>
-        <p class="hero-description">Engineering high-performance Luau systems, immersive environments, and intuitive interfaces. Scaling experiences from concept to production.</p>
-        <div class="btn-group">
-          <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
-          <a href="#contact" class="btn btn-secondary">Contact Me</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="image-glow-wrapper">
-          <img src="ExpJex.webp" alt="ExpJex Character" class="hero-img">
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section id="about" class="about-section section reveal">
-      <div class="wrap">
-        <div class="about-layout">
-          <div class="about-visual">
-            <div class="image-glow-wrapper img-sub">
-              <img src="ExpJex.webp" alt="ExpJex Development" class="about-img">
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>ExpJex</h1>
+            <p class="subtitle">Professional Roblox Developer</p>
+            <p class="intro">Expertise in advanced game mechanics, UI systems, and high-performance building for the Roblox platform.</p>
+            <div class="cta-group">
+                <a href="#portfolio" class="btn primary">View Portfolio</a>
+                <a href="#contact" class="btn secondary">Contact Me</a>
             </div>
-          </div>
-          <div class="about-content">
-            <span class="eyebrow">Biography</span>
-            <h2 class="section-title">About Me</h2>
-            <p class="about-p">Hello, I am <strong>ExpJex</strong>. Over the past 6 years, I have dedicated myself to creating immersive experiences within Roblox Studio. Throughout this journey, I have honed my expertise in advanced scripting, user interface design, environmental building, and various other facets of full-stack game execution.</p>
-            <p class="about-p">I am deeply passionate about game development, web design, programming, and robotics. These multi-disciplinary interests have allowed me to collaborate with diverse teams and contribute to vibrant communities. Driven by continuous learning, every commission, challenge, and concept serves as fuel to refine my craft and grow as a developer every single day.</p>
-            <div class="about-stats">
-              <div class="mini-stat">
-                <span class="stat-num">6+</span>
-                <span class="stat-lbl">Years Experience</span>
-              </div>
-              <div class="mini-stat">
-                <span class="stat-num">100%</span>
-                <span class="stat-lbl">Luau Optimized</span>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Hello, I'm ExpJex. I have spent 6 years creating games in Roblox Studio. Throughout my journey, I have developed skills in scripting, UI design, building, and several other areas required for game development.</p>
+                <p>I am passionate about game development, web design, programming, and robotics. These interests have led me to collaborate on various projects and communities. Even when projects do not succeed, every commission, job, and idea motivates me to continue improving and growing every day.</p>
+            </div>
+        </div>
     </section>
 
-    <section id="skills" class="skills-section section reveal">
-      <div class="wrap">
-        <div class="section-header">
-          <span class="eyebrow">Expertise</span>
-          <h2 class="section-title">Technical Skills</h2>
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="filter-bar">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="scripting">Scripting</button>
+            <button class="filter-btn" data-category="ui">UI Design</button>
+            <button class="filter-btn" data-category="building">Building</button>
         </div>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <div class="skill-icon-header">
-              <span class="skill-main-icon">💻</span>
-              <h3>Scripting</h3>
-            </div>
-            <div class="skill-subcategory">
-              <h4>Full Stack Scripting</h4>
-              <ul class="skill-list">
-                <li>Building Systems</li>
-                <li>RNG Shop Systems</li>
-                <li>Rebirth Systems</li>
-              </ul>
-            </div>
-            <div class="skill-subcategory">
-              <h4>Backend Scripting</h4>
-              <ul class="skill-list">
-                <li>Data Management</li>
-                <li>Global Events</li>
-                <li>Data Saving Systems</li>
-              </ul>
-            </div>
-            <div class="skill-subcategory">
-              <h4>Frontend Scripting</h4>
-              <ul class="skill-list">
-                <li>UI Animations</li>
-                <li>Dynamic Visual Effects</li>
-                <li>Notifications &amp; Loading Systems</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-icon-header">
-              <span class="skill-main-icon">🎨</span>
-              <h3>UI Design</h3>
-            </div>
-            <div class="skill-subcategory">
-              <h4>Graphic UI</h4>
-              <ul class="skill-list">
-                <li>Custom Vector Icons</li>
-                <li>Game Thumbnails</li>
-                <li>User Interfaces</li>
-              </ul>
-            </div>
-            <div class="skill-subcategory">
-              <h4>Interactive UI</h4>
-              <ul class="skill-list">
-                <li>Smooth Tween Animations</li>
-                <li>Button Sounds &amp; Haptics</li>
-                <li>Dynamic Transitions</li>
-              </ul>
-            </div>
-            <div class="skill-subcategory">
-              <h4>Technical UI</h4>
-              <ul class="skill-list">
-                <li>Responsive Layouts</li>
-                <li>Player Data Integration</li>
-                <li>Dynamic Notifications</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-icon-header">
-              <span class="skill-main-icon">🔨</span>
-              <h3>Building</h3>
-            </div>
-            <div class="skill-subcategory">
-              <h4>Environment Architecture</h4>
-              <ul class="skill-list">
-                <li>Consistent Themes</li>
-                <li>Immersive Structures</li>
-                <li>Atmospheric Lighting Setup</li>
-              </ul>
-            </div>
-            <div class="skill-subcategory">
-              <h4>Technical Building</h4>
-              <ul class="skill-list">
-                <li>Level of Detail Optimization</li>
-                <li>Asset Optimization</li>
-                <li>Performance-Safe Geometry</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+        <div id="project-container" class="project-grid"></div>
     </section>
 
-    <section id="portfolio" class="portfolio-section section reveal">
-      <div class="wrap">
-        <div class="section-header">
-          <span class="eyebrow">Showcase</span>
-          <h2 class="section-title">Projects Gallery</h2>
-        </div>
-        <div class="filter-container">
-          <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="scripting">Scripting</button>
-          <button class="filter-btn" data-filter="ui">UI Design</button>
-          <button class="filter-btn" data-filter="building">Building</button>
-        </div>
-        <div class="portfolio-grid" id="portfolio-grid"></div>
-      </div>
-    </section>
-
-    <section id="services" class="services-section section reveal">
-      <div class="wrap">
-        <div class="section-header">
-          <span class="eyebrow">Offerings</span>
-          <h2 class="section-title">Professional Services</h2>
-        </div>
+    <section id="services">
+        <h2>Services</h2>
         <div class="services-grid">
-          <div class="service-card">
-            <div class="service-num">01</div>
-            <h3>Roblox Scripting</h3>
-            <p>Clean, object-oriented Luau architecture optimized for network efficiency and seamless client-server security.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-num">02</div>
-            <h3>UI Design</h3>
-            <p>Modern layouts mapped across all aspect ratios to guarantee crisp user interfaces on Mobile, Console, and PC.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-num">03</div>
-            <h3>Building</h3>
-            <p>Immersive structural environmental design leveraging custom lighting profiles and memory-budget optimizations.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-num">04</div>
-            <h3>Bug Fixing</h3>
-            <p>Rigorous diagnostics and refactoring of broken legacy codebases, resolving memory leaks and syntax defects.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-num">05</div>
-            <h3>System Development</h3>
-            <p>End-to-end design of custom modular mechanics like inventory architectures, item trading, and matchmakers.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-num">06</div>
-            <h3>Optimization</h3>
-            <p>Improving frames-per-second outputs via asset streaming tweaks, algorithmic optimization, and instances throttling.</p>
-          </div>
+            <div class="service-card"><h3>Roblox Scripting</h3></div>
+            <div class="service-card"><h3>UI Design</h3></div>
+            <div class="service-card"><h3>Building</h3></div>
+            <div class="service-card"><h3>Bug Fixing</h3></div>
+            <div class="service-card"><h3>System Development</h3></div>
+            <div class="service-card"><h3>Optimization</h3></div>
         </div>
-      </div>
     </section>
 
-    <section id="pricing" class="pricing-section section reveal">
-      <div class="wrap">
-        <div class="section-header">
-          <span class="eyebrow">Investment</span>
-          <h2 class="section-title">Commission Rates</h2>
+    <section id="pricing">
+        <h2>Pricing</h2>
+        <div class="pricing-container">
+            <!-- PASTE YOUR ORIGINAL PRICING CODE HERE -->
         </div>
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <h3>Standard Asset</h3>
-            <div class="price"><span>$</span>15<span>+</span></div>
-            <div class="robux-price">or 4,000+ R$</div>
-            <ul class="pricing-features">
-              <li>Single UI Menu</li>
-              <li>Basic Scripting Task</li>
-              <li>Small Environment Prop</li>
-              <li>1 Revision</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary">Request Quote</a>
-          </div>
-          <div class="pricing-card popular">
-            <div class="popular-badge">Most Requested</div>
-            <h3>Advanced System</h3>
-            <div class="price"><span>$</span>50<span>+</span></div>
-            <div class="robux-price">or 14,000+ R$</div>
-            <ul class="pricing-features">
-              <li>Full UI Screen Set</li>
-              <li>Core Game Mechanic</li>
-              <li>Medium Map / Lobby</li>
-              <li>Optimized Luau Code</li>
-              <li>2 Revisions</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary">Request Quote</a>
-          </div>
-          <div class="pricing-card">
-            <h3>Full Architecture</h3>
-            <div class="price"><span>$</span>150<span>+</span></div>
-            <div class="robux-price">or 42,000+ R$</div>
-            <ul class="pricing-features">
-              <li>End-to-End Development</li>
-              <li>Complex Datastores</li>
-              <li>Large Scale Environments</li>
-              <li>Security &amp; Anti-Exploit</li>
-              <li>Priority Support</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary">Request Quote</a>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <section id="payment" class="timeline-section section reveal">
-      <div class="wrap">
-        <div class="section-header">
-          <span class="eyebrow">Workflow</span>
-          <h2 class="section-title">Payment &amp; Process</h2>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-links">
+            <a href="#">Discord</a>
+            <a href="#">Roblox Profile</a>
+            <a href="#">PayPal</a>
+            <a href="#">Email</a>
         </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-step">Step 01</span>
-              <h3>Initial Consultation</h3>
-              <p>Client initiates contact through preferred social platforms to submit project guidelines and scope requirements.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-step">Step 02</span>
-              <h3>Requirements Discovery</h3>
-              <p>Comprehensive evaluation of mechanics, deadlines, visual style assets, and project architecture criteria.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-step">Step 03</span>
-              <h3>Development Phase</h3>
-              <p>Active project engineering using version-controlled structures following scalable clean-code methodologies.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-step">Step 04</span>
-              <h3>Milestone Demonstrations</h3>
-              <p>Routine diagnostic performance feedback logs and clear interactive production video builds delivered to client.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-step">Step 05</span>
-              <h3>Verification &amp; Clearing</h3>
-              <p>Final project build validations completed. Remittance processed securely through verified PayPal channels or Robux.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-step">Step 06</span>
-              <h3>Asset Handover</h3>
-              <p>Secure distribution of structural files package deployed natively as a verified Roblox Model (.rbxm) or Place (.rbxl) format.</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <section id="contact" class="contact-section section reveal">
-      <div class="wrap">
-        <div class="section-header">
-          <span class="eyebrow">Communication</span>
-          <h2 class="section-title">Let's Connect</h2>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body"></div>
         </div>
-        <div class="contact-grid">
-          <a href="https://discord.gg/j3tvJnSr" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-icon">💬</div>
-            <h3>Discord</h3>
-            <p>3st3b6n_relax_08486</p>
-            <span class="contact-action">Join Server →</span>
-          </a>
-          <a href="https://www.roblox.com/es/users/4884660558/profile" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-icon">🎮</div>
-            <h3>Roblox Profile</h3>
-            <p>@ExpJex</p>
-            <span class="contact-action">Follow Developer →</span>
-          </a>
-          <a href="mailto:contact@expjex.dev" class="contact-card">
-            <div class="contact-icon">✉️</div>
-            <h3>Business Email</h3>
-            <p>contact@expjex.dev</p>
-            <span class="contact-action">Send Message →</span>
-          </a>
-          <a href="https://paypal.me/expjex" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-icon">💳</div>
-            <h3>PayPal</h3>
-            <p>Verified Merchant Account</p>
-            <span class="contact-action">View Link →</span>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div class="modal" id="project-modal">
-    <div class="modal-backdrop"></div>
-    <div class="modal-container">
-      <button class="modal-close" id="modal-close-btn">&times;</button>
-      <div class="modal-body">
-        <div class="modal-media-side">
-          <div class="main-media-display" id="modal-main-media"></div>
-          <div class="media-thumbnails-track" id="modal-thumbnails"></div>
-        </div>
-        <div class="modal-info-side">
-          <span class="modal-category" id="modal-project-category">Category</span>
-          <h2 class="modal-title" id="modal-project-title">Project Title</h2>
-          <p class="modal-description" id="modal-project-desc">Detailed project evaluation details go here.</p>
-          <div class="modal-meta-group">
-            <h4>Technologies Utilized</h4>
-            <div class="tech-tags-wrapper" id="modal-project-tech"></div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <footer class="site-footer">
-    <div class="wrap footer-flex">
-      <p>&copy; 2026 <span>ExpJex</span>. All Rights Reserved.</p>
-      <p>Engineered with <code>Luau</code> &amp; Pure Frontend Stack</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
