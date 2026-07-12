@@ -6,7 +6,7 @@ const projects = [
     images: ["bedroom.png", "office.png"],
     video: "",
     technologies: ["Luau", "Full Stack Scripting", "Data Management", "Environment Design", "Atmospheric Lighting", "LOD Optimization"],
-    category: "scripting, UI, building"
+    category: "scripting"
   },
   {
     title: "Building System",
@@ -15,7 +15,7 @@ const projects = [
     images: ["building.webp", "shop.png"],
     video: "",
     technologies: ["Luau", "Full Stack Scripting", "Data Sync Framework", "UI Design"],
-    category: "scripting, UI, building"
+    category: "scripting"
   },
   {
     title: "Waifu Enviroment",
@@ -33,7 +33,7 @@ const projects = [
     images: ["marker.webp"],
     video: "",
     technologies: ["Luau", "Full Stack Scripting", "Ui Desing", "Animations", "Scripting FrontEnd"],
-    category: "scripting, animations"
+    category: "scripting"
   },
   {
     title: "Palenque Building",
@@ -51,7 +51,7 @@ const projects = [
     images: ["thumbail.png"],
     video: "",
     technologies: ["CFX", "UI Desing"],
-    category: "building"
+    category: "ui"
   }
 ];
 
