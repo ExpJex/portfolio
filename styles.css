@@ -1,19 +1,19 @@
 :root {
-  --bg: #07070f;
-  --surface: #0c0c1a;
-  --card: #10101f;
-  --border: #1c1c32;
-  --border2: #28284a;
-  --purple: #7c5cfc;
-  --cyan: #22d3ee;
+  --bg: #0a0a09;
+  --surface: #121110;
+  --card: #1a1816;
+  --border: #302c28;
+  --border2: #4a443d;
+  --purple: #f97316;
+  --cyan: #fbbf24;
   --red: #f43f5e;
   --green: #22c55e;
   --yellow: #fbbf24;
-  --text: #e8e8f8;
-  --dim: #9898b8;
-  --muted: #525270;
-  --glass: rgba(12, 12, 26, 0.7);
-  --glass-border: rgba(28, 28, 50, 0.6);
+  --text: #fcfaf7;
+  --dim: #a8a29e;
+  --muted: #78716c;
+  --glass: rgba(18, 17, 16, 0.7);
+  --glass-border: rgba(48, 44, 40, 0.6);
   --font-disp: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --r-sm: 7px;
@@ -56,7 +56,7 @@ body {
 .bg-circle {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(124, 92, 252, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
   filter: blur(40px);
   animation: floatCircle 25s infinite ease-in-out;
 }
@@ -156,13 +156,13 @@ body {
 
 .nav-link:hover {
   color: var(--text);
-  background: rgba(28, 28, 50, 0.4);
+  background: rgba(48, 44, 40, 0.4);
 }
 
 .nav-link.active {
   color: var(--purple);
-  background: rgba(124, 92, 252, 0.08);
-  border: 1px solid rgba(124, 92, 252, 0.2);
+  background: rgba(249, 115, 22, 0.08);
+  border: 1px solid rgba(249, 115, 22, 0.2);
 }
 
 .menu-toggle {
@@ -203,8 +203,8 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--cyan);
-  background: rgba(34, 211, 238, 0.06);
-  border: 1px solid rgba(34, 211, 238, 0.18);
+  background: rgba(251, 191, 36, 0.06);
+  border: 1px solid rgba(251, 191, 36, 0.18);
   padding: 0.4rem 1rem;
   border-radius: 50px;
   margin-bottom: 2rem;
@@ -276,12 +276,12 @@ body {
 .btn-primary {
   background: var(--purple);
   color: #ffffff;
-  box-shadow: 0 4px 20px rgba(124, 92, 252, 0.25);
+  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(124, 92, 252, 0.4);
+  box-shadow: 0 6px 24px rgba(249, 115, 22, 0.4);
   opacity: 0.95;
 }
 
@@ -293,7 +293,7 @@ body {
 
 .btn-secondary:hover {
   border-color: var(--purple);
-  background: rgba(124, 92, 252, 0.04);
+  background: rgba(249, 115, 22, 0.04);
   transform: translateY(-2px);
 }
 
@@ -405,7 +405,7 @@ body {
 
 .skill-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(124, 92, 252, 0.4);
+  border-color: rgba(249, 115, 22, 0.4);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -496,8 +496,8 @@ body {
 
 .filter-btn.active {
   color: var(--cyan);
-  background: rgba(34, 211, 238, 0.05);
-  border-color: rgba(34, 211, 238, 0.2);
+  background: rgba(251, 191, 36, 0.05);
+  border-color: rgba(251, 191, 36, 0.2);
 }
 
 .portfolio-grid {
@@ -545,7 +545,7 @@ body {
 .project-overlay-icon {
   position: absolute;
   top: 1rem; right: 1rem;
-  background: rgba(7, 7, 15, 0.8);
+  background: rgba(10, 10, 9, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -584,7 +584,7 @@ body {
   letter-spacing: 0.05em;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
-  background: rgba(28, 28, 50, 0.5);
+  background: rgba(48, 44, 40, 0.5);
   border: 1px solid var(--border2);
   color: var(--dim);
 }
@@ -673,7 +673,7 @@ body {
 
 .pricing-card.popular {
   border-color: var(--purple);
-  box-shadow: 0 10px 30px rgba(124, 92, 252, 0.15);
+  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.15);
   transform: scale(1.05);
 }
 
@@ -727,7 +727,7 @@ body {
   text-align: center;
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--white);
+  color: var(--text);
   margin-bottom: 2rem;
 }
 
@@ -914,7 +914,7 @@ body {
 .modal-backdrop {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(5, 5, 10, 0.85);
+  background: rgba(10, 10, 9, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -962,7 +962,7 @@ body {
 }
 
 .modal-media-side {
-  background: #05050b;
+  background: #0a0a09;
   border-right: 1px solid var(--border);
   padding: 2rem;
   display: flex;
