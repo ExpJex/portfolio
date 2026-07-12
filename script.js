@@ -13,7 +13,7 @@ const projects = [
     description: "Building system like clash of clans game",
     thumbnail: "building.webp",
     images: ["building.webp", "shop.png"],
-    video: "",
+    video: "building_a_base.mp4",
     technologies: ["Luau", "Full Stack Scripting", "Data Sync Framework", "UI Design"],
     category: "scripting"
   },
@@ -31,7 +31,7 @@ const projects = [
     description: "A comission of a full soccer ball system, with animations, and simple desing",
     thumbnail: "marker.webp",
     images: ["marker.webp"],
-    video: "",
+    video: "soccer_video.mp4",
     technologies: ["Luau", "Full Stack Scripting", "Ui Desing", "Animations", "Scripting FrontEnd"],
     category: "scripting"
   },
